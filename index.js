@@ -15,6 +15,7 @@ massive(process.env.CONNECTION_STRING)
 
 app.use(express.static(__dirname + './build'));
 
+app.get('/api/shelf/:id', controller.getShelf);
 app.get('/api/bin/:id', controller.getBin);
 app.put('/api/bin/:id', controller.updateBin);
 app.post('/api/bin/:id', controller.createBin);

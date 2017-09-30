@@ -16,12 +16,17 @@ module.exports = {
     dbInstance.create_bin(req.body)
     .then(() => res.send())
     .catch(() => res.status(500).send);
-    console.log("createBin");
   },
   removeBin: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance.delete_bin({location: req.params.id})
     .then(() => res.send())
+    .catch(() => res.status(500).send);
+  },
+  getShelf: (req, res, next) => {
+    const dbInstance = req.app.get('db');
+    dbInstance.read_shelf({location: `${req.params.id}%`})
+    .then(shelf => res.send(shelf))
     .catch(() => res.status(500).send);
   }
 }
